@@ -1,0 +1,33 @@
+version: 0.19.0
+name: devoxxuk-question-1
+namespace: ""
+runtime: go
+registry: ""
+image: ghcr.io/thomasvitale/devoxxuk-question-1:latest
+imageDigest: sha256:240b83ca731c21c064f424c20673d1a609675d041ace4216f32da06c5fa39e6b
+build: local
+git: {}
+builder: gcr.io/paketo-buildpacks/builder:tiny
+builders:
+  default: gcr.io/paketo-buildpacks/builder:tiny
+buildpacks:
+- paketo-buildpacks/go-dist
+- ghcr.io/boson-project/go-function-buildpack:tip
+volumes: []
+buildEnvs: []
+envs:
+- name: REDIS_HOST
+  value: ""
+- name: GAME_EVENTING_ENABLED
+  value: "true"
+- name: GAME_EVENTING_BROKER_URI
+  value: http://broker-ingress.knative-eventing.svc.cluster.local/default/default
+annotations: {}
+options: {}
+labels: []
+healthEndpoints:
+  liveness: /health/liveness
+  readiness: /health/readiness
+created: 2022-05-08T20:17:12.869606+01:00
+invocation:
+  format: http
