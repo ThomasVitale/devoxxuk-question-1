@@ -35,16 +35,6 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
       - name: Build
         run: go build -v
-      - name: Install kn
-        run: |
-          curl -sL https://github.com/knative/client/releases/download/knative-v${KN}/kn-linux-amd64 \
-            -o /usr/local/bin/kn && chmod +x /usr/local/bin/kn
-          kn version
-      - name: Install kn-func
-        run: |
-          curl -sL https://github.com/knative-sandbox/kn-plugin-func/releases/download/v${FUNC}/func_linux_amd64 \
-            -o /usr/local/bin/func && chmod +x /usr/local/bin/func
-          func version
   package:
     name: Package and Publish
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -63,12 +53,12 @@ jobs:
           go-version: 1.18
       - name: Install kn
         run: |
-          curl -sL https://github.com/knative/client/releases/download/knative-v${KN}/kn-linux-amd64 \
+          curl -sL https://github.com/knative/client/releases/download/knative-v1.3.1/kn-linux-amd64 \
             -o /usr/local/bin/kn && chmod +x /usr/local/bin/kn
           kn version
       - name: Install kn-func
         run: |
-          curl -sL https://github.com/knative-sandbox/kn-plugin-func/releases/download/v${FUNC}/func_linux_amd64 \
+          curl -sL https://github.com/knative-sandbox/kn-plugin-func/releases/download/v0.23.1/func_linux_amd64 \
             -o /usr/local/bin/func && chmod +x /usr/local/bin/func
           func version
       - name: Log into container registry
