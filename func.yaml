@@ -7,9 +7,9 @@ image: ghcr.io/thomasvitale/devoxxuk-question-1:latest
 imageDigest: sha256:240b83ca731c21c064f424c20673d1a609675d041ace4216f32da06c5fa39e6b
 build: local
 git: {}
-builder: gcr.io/paketo-buildpacks/builder:tiny
+builder: gcr.io/paketo-buildpacks/builder:base
 builders:
-  default: gcr.io/paketo-buildpacks/builder:tiny
+  default: gcr.io/paketo-buildpacks/builder:base
 buildpacks:
 - paketo-buildpacks/go-dist
 - ghcr.io/boson-project/go-function-buildpack:tip
